@@ -1,7 +1,8 @@
-import { celula } from 'src/group-celula/entities/celula.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { membros } from 'src/membros/entities/membros.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
 Entity();
-export class membros {
+export class celula {
   @PrimaryGeneratedColumn('increment', { name: 'id_membro' })
   idMembro: number;
 
@@ -15,19 +16,16 @@ export class membros {
   bairro: string;
 
   @Column('varchar')
-  Batismo_data: Date;
+  celula_perfil: Date;
+
+  @OneToMany(() => membros, (membros) => membros.celula)
+  membros: membros[];
 
   @Column('varchar')
-  data_de_nascimento: Date;
+  lider: Date;
 
   @Column('varchar')
-  telefone: string;
-
-  @Column('varchar')
-  cidade: string;
-
-  @ManyToOne(() => celula, (celula) => celula.membros)
-  celula: celula;
+  lider_em_treinamento: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
